@@ -1,3 +1,8 @@
+// get only UNIQUE catgories
+// iterate over categories and return buttons
+// make sure to select buttons when they are avaialble
+
+// items
 const menu = [
   {
     id: 1,
@@ -71,4 +76,64 @@ const menu = [
     img: "./images/item-9.jpeg",
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
+  {
+    id: 10,
+    title: "steak dinner",
+    category: "dinners",
+    price: 35.99,
+    img: "./images/item-10.jpeg",
+    desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
+  },
 ];
+
+const sectionCenter = document.querySelector(".section-center");
+const filterBtns = document.querySelectorAll(".filter-btn");
+
+// load items
+window.addEventListener("DOMContentLoaded", function(){
+  displayMenuItems(menu);
+});
+
+// filter items
+filterBtns.forEach(function(btn){
+  btn.addEventListener("click", function(e){
+
+    const category = e.currentTarget.dataset.id;
+    const menuCategory = menu.filter(function(menuItem){
+      if (menuItem.category === category) {
+        return menuItem;
+      }
+      else if(category==='all'){
+        return menuItem;
+      }
+    });
+
+    console.log(menuCategory);
+    displayMenuItems(menuCategory);
+
+  });
+});
+
+
+/**
+ * @param {array} menuItems 
+ */
+function displayMenuItems(menuItems){
+  let displayMenu = menuItems.map(function(item){
+    return `<article class="menu-item">
+            <img src=${item.img} class="photo" alt=${item.title}>
+            <div class="item-info">
+              <header>
+                <h4>${item.title}</h4>
+                <h4 class="price">${item.price}</h4>
+              </header>
+              <p class="item-text">
+                ${item.desc}
+              </p>
+            </div>
+          </article>`;
+  });
+  displayMenu = displayMenu.join("")
+  console.log(displayMenu);
+  sectionCenter.innerHTML = displayMenu;
+}
