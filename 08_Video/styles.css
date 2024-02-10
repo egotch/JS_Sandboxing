@@ -198,6 +198,10 @@ Video
   z-index: -999;
   visibility: hidden;
 }
+.preloader-img {
+  height: 50%;
+  width: 50%;
+}
 
 header {
   min-height: 100vh;
@@ -255,7 +259,7 @@ h1 {
   left: 50%;
 }
 /* header after */
-/* header::after {
+header::after {
   content: "";
   position: absolute;
   top: 0;
@@ -264,4 +268,4 @@ h1 {
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   z-index: -1;
-} */
+}
